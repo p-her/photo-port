@@ -1,10 +1,5 @@
 import React from "react";
-
-
-
-
-
-
+import { capitalizeFirstLetter } from '../../utils/helpers';
 
 function Nav() {
     const categories = [
@@ -22,29 +17,30 @@ function Nav() {
     ];
 
     
-function categorySelected(name){
-    console.log(`${name} clicked`)
-}
+    const handleClick = (item) => {
+        console.log(item);
+        return item;
+      };
 
     return (
-        <header>
+        <header className="flex-row px-1">
             <h2>
-                <a href="/">
-                    <span role="img" aria-label="camera">📸</span>
+                <a data-testid="link" href="/">
+                    <span role="img" aria-label="camera">📸</span> Oh Snap!
                 </a>
             </h2>
             <nav>
                 <ul className="flex-row">
                     <li className="mx-2">
-                        <a href="#about">About me</a>
+                        <a data-testid="about" href="#about" onClick={() => handleClick('About')}>About me</a>
                     </li>
                     <li>
-                        <span>Contact</span>
+                        <span onClick={() => handleClick('Contact')}>Contact</span>
                     </li>
                     {categories.map((category) => (
                         <li className="mx-1" key={category.name} >
-                            <span onClick={() => categorySelected(category.name)} >
-                                {category.name}
+                            <span onClick={() => handleClick(category.name)} >
+                                {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
                     ))}

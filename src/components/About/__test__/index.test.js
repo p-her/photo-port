@@ -20,6 +20,9 @@ describe('About component', () => {
         // About component.
         const { asFragment } = render(<About />);
 
+        // compare whether the expected and actual outcomes match.
+        // use the expect function with a matcher to assert something about value
+        
         expect(asFragment()).toMatchSnapshot();
     })
 })
