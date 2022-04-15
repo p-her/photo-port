@@ -138,7 +138,10 @@ function PhotoList({category}){
         setCurrentPhoto({...image, index: i});
         // when the user has clicked on an image, we'll update the click handler, toggleModal
         // so that it updates isModalOpen value to true
-        setIsModalOpen(true);
+        // we have a state called isModalOpen in the PhotoList component
+        // we'll need to pass down this state as a prop to the Modal component, so that it can
+        // updated when the modal is closed.
+        setIsModalOpen(!isModalOpen);
     }
 
     const currentPhotos = photos.filter((photo) => photo.category === category);
@@ -146,7 +149,7 @@ function PhotoList({category}){
     return (
         <div>
             {/* only render the modal if isModalOpen value is true */}
-            {isModalOpen && <Modal currentPhoto={currentPhoto}/>}
+            {isModalOpen && (<Modal currentPhoto={currentPhoto} onClose={toggleModal}/>)}
             <div className="flex-row">
             {currentPhotos.map((image, i) => (
                 <img 
