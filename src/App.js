@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import About from './components/About';
-<<<<<<< HEAD
+
 import ContactForm from './components/Contact';
-=======
+
 import Gallery from './components/Gallery';
->>>>>>> feature/gallery
+
 import Nav from './components/Nav'
 
 
@@ -29,13 +29,13 @@ function App() {
             currentCategory = { currentCategory }
         />
         <main>
-<<<<<<< HEAD
+
             <ContactForm></ContactForm>
             <About></About>
-=======
+
             <Gallery currentCategory={currentCategory}/>
             <About/>
->>>>>>> feature/gallery
+
      
         </main>
       
