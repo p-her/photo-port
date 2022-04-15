@@ -3,13 +3,27 @@ import React from 'react';
 import { render, cleanup , screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Nav from '..';
-import { screen } from '@testing-library/prefer-screen-queries'
+
  
 afterEach(cleanup);
 
+const categories = [
+    { name: 'portraits', description: 'Portraits of people in my life' }
+  ]
+  const mockCurrentCategory = jest.fn();
+  const mockSetCurrentCategory = jest.fn();
+  const mockContactSelected = jest.fn();
+  const mockSetContactSelected = jest.fn();
+
 describe('Nav component', () => {
   it('renders', () => {
-    render(<Nav />);
+    render(<Nav
+        categories={categories}
+        setCurrentCategory={mockSetCurrentCategory}
+        currentCategory={mockCurrentCategory}
+        contactSelected={mockContactSelected}
+        setContactSelected={mockSetContactSelected}
+      />);
   });
 
   it('matches snapshot', () => {
@@ -21,31 +35,21 @@ describe('Nav component', () => {
 
 describe('emoji is visible', () => {
   it('inserts emoji into the h2', () => {
-<<<<<<< HEAD
+
   render(<Nav />);
 
   expect(screen.getByLabelText('camera')).toHaveTextContent('📸');
-=======
-     render(<Nav />);
 
-    expect(screen.getByLabelText('camera')).toHaveTextContent('📸');
->>>>>>> develop
+
   });
 })
 
 describe('links are visible', () => {
   it('inserts text into the links', () => {
-<<<<<<< HEAD
+
      render(<Nav />);
 
     expect(screen.getByTestId('link')).toHaveTextContent('Oh Snap!');
     expect(screen.getByTestId('about')).toHaveTextContent('About me');
-=======
-    render(<Nav />);
-
-    expect(screen.getByTestId('link')).toHaveTextContent('Oh Snap!');
-    expect(screen.etByTestId('about')).toHaveTextContent('About me');
->>>>>>> develop
-  });
-
+  })
 })
