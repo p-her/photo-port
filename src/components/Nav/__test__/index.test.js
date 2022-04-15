@@ -3,7 +3,8 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Nav from '..';
-
+import { screen } from '@testing-library/prefer-screen-queries'
+ 
 afterEach(cleanup);
 
 describe('Nav component', () => {
@@ -13,25 +14,25 @@ describe('Nav component', () => {
 
   it('matches snapshot', () => {
     const { asFragment } = render(<Nav />);
-    
+
     expect(asFragment()).toMatchSnapshot();
   });
 })
 
 describe('emoji is visible', () => {
   it('inserts emoji into the h2', () => {
-  const { getByLabelText } = render(<Nav />);
+     render(<Nav />);
 
-  expect(getByLabelText('camera')).toHaveTextContent('📸');
+    expect(screen.getByLabelText('camera')).toHaveTextContent('📸');
   });
-})  
+})
 
 describe('links are visible', () => {
   it('inserts text into the links', () => {
-    const { getByTestId } = render(<Nav />);
+    render(<Nav />);
 
-    expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
-    expect(getByTestId('about')).toHaveTextContent('About me');
+    expect(screen.getByTestId('link')).toHaveTextContent('Oh Snap!');
+    expect(screen.etByTestId('about')).toHaveTextContent('About me');
   });
 
 })
