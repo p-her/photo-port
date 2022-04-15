@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ContactForm() {
+
+    const [formState, setFormState] = useState({ name: '', email: '', message: ''});
+    const { name, email, message } = formState;
+
+    /* In the preceding function, we're using the setFormState function to update the 
+    formState value for the name property. We assign the value taken from the input field
+     in the UI with e.target.value and assign this value to the property formState.name. 
+     We use the spread operator, ...formState, so we can retain the other key-value pairs 
+     in this object. Without the spread operator, the formState object would be overwritten 
+     to only contain the name: value key pair */
+    function handleChange(e){
+        // the name property of target in the preceding expression actually refers to
+        // the name attribute of the form element. This attribute value matches the property
+        // names of formState (name, email and message) and allows us to use [] to create dynamic property names
+        setFormState({...formState, [e.target.name]: e.target.value })
+    }
+    // can be delete: this sync with the form input 
+    // console.log(formState); 
+
+
+    function handleSubmit(e){
+        e.preventDefault();
+        console.log(formState);
+    }
+
     return (
         <section>
             <h1>Contact me</h1>
-            <form id="contact-form">
+            <form id="contact-form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name:</label>
-                    <input type="text" name="name"/>
+                    <input type="text" name="name" onChange={handleChange} defaultValue={name}/>
                 </div>
                 <div>
                     <label htmlFor="email">Email address:</label>
-                    <input type="email" name="email" />
+                    <input type="email" name="email" onChange={handleChange} defaultValue={email}/>
                 </div>
                 <div>
                     <label htmlFor="message">Message:</label>
-                    <textarea name="message" rows="5" />
+                    <textarea name="message" rows="5" onChange={handleChange} defaultValue={message}/>
                 </div>
                 <div>
                     <button type="submit">Submit</button>
